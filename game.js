@@ -8,22 +8,31 @@ const speedValue = document.getElementById('speedValue');
 // Game Settings
 const gridSize = 30; // Large size for easy visibility
 const tileCount = canvas.width / gridSize;
-let gameSpeed = parseInt(speedRange.value); // Initial speed from slider
+
+// Calculate speed (delay) from slider value (1-10)
+// 1 = Slowest (600ms), 10 = Fastest (60ms)
+function getSpeedDelay(val) {
+    const minDelay = 60;
+    const maxDelay = 600;
+    // Inverse relationship: Higher val = Lower delay
+    return maxDelay - ((val - 1) * (maxDelay - minDelay) / 9);
+}
+
+let gameSpeed = getSpeedDelay(parseInt(speedRange.value));
 
 // Speed Control Logic
 speedRange.addEventListener('input', (e) => {
-    gameSpeed = parseInt(e.target.value);
-    
-    // Update text display
-    // Using simple ranges: 100(fast) - 600(slow)
-    // Remember: lower number = faster speed
-    if (gameSpeed > 500) {
+    const val = parseInt(e.target.value);
+    gameSpeed = getSpeedDelay(val);
+
+    // Update text display based on slider value (1-10)
+    if (val <= 2) {
         speedValue.textContent = "Very Slow";
-    } else if (gameSpeed > 400) {
+    } else if (val <= 4) {
         speedValue.textContent = "Slow";
-    } else if (gameSpeed > 300) {
+    } else if (val <= 6) {
         speedValue.textContent = "Normal";
-    } else if (gameSpeed > 200) {
+    } else if (val <= 8) {
         speedValue.textContent = "Fast";
     } else {
         speedValue.textContent = "Super Fast!";
