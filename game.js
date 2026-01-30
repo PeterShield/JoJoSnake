@@ -224,4 +224,36 @@ document.addEventListener('keydown', (e) => {
 restartBtn.addEventListener('click', initGame);
 
 // Start game on load
+// Start game on load
 initGame();
+
+// Make canvas clickable for restart when game is over
+canvas.addEventListener('click', () => {
+    if (!isGameRunning) {
+        initGame();
+    }
+});
+
+// Update cursor to indicate clickable area when game over
+function updateCursor() {
+    if (!isGameRunning) {
+        canvas.style.cursor = 'pointer';
+    } else {
+        canvas.style.cursor = 'default';
+    }
+}
+
+// Add cursor update to game loop or status changes
+const originalGameOver = gameOver;
+gameOver = function () {
+    originalGameOver();
+    updateCursor();
+    // Update text to be more explicit
+    ctx.fillText('Click to Try Again!', canvas.width / 2, canvas.height / 2 + 70);
+};
+
+const originalInitGame = initGame;
+initGame = function () {
+    originalInitGame();
+    updateCursor();
+};
