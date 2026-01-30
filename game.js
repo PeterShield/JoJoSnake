@@ -73,8 +73,16 @@ function initGame() {
     placeFood();
     isGameRunning = true;
 
+    // Remove focus from button so arrow keys work immediately
+    if (document.activeElement === restartBtn) {
+        restartBtn.blur();
+    }
+
     if (gameLoopId) clearInterval(gameLoopId);
     gameLoopId = setInterval(gameLoop, gameSpeed);
+
+    // Draw immediately so the "Oops" screen disappears
+    draw();
 }
 
 // Game Loop
