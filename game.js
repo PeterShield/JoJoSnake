@@ -132,9 +132,8 @@ function draw() {
 
     // Draw Food (Apple)
     ctx.fillStyle = foodColor;
-    ctx.beginPath();
-    ctx.arc((food.x * gridSize) + gridSize / 2, (food.y * gridSize) + gridSize / 2, gridSize / 2 - 2, 0, Math.PI * 2);
-    ctx.fill();
+    // Draw as a square (slightly smaller than grid size for padding)
+    ctx.fillRect((food.x * gridSize) + 2, (food.y * gridSize) + 2, gridSize - 4, gridSize - 4);
 
     // Draw Snake
     snake.forEach((segment, index) => {
