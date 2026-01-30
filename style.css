@@ -1,0 +1,58 @@
+body {
+    background-color: #ffd700; /* Bright yellow background */
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Fun font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.game-container {
+    text-align: center;
+}
+
+h1 {
+    color: #ff4500; /* Red-orange */
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px #fff;
+}
+
+canvas {
+    background-color: #87ceeb; /* Sky blue game board */
+    border: 10px solid #4169e1; /* Royal blue border */
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.controls {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #006400; /* Dark green */
+}
+
+#restartBtn {
+    background-color: #ff69b4; /* Hot pink */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: inherit;
+    box-shadow: 0 5px #c71585;
+}
+
+#restartBtn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px #c71585;
+}
+
+#score {
+    font-size: 2rem;
+    color: #800080; /* Purple */
+    margin: 10px 0;
+}
