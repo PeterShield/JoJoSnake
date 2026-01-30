@@ -12,6 +12,10 @@
         <canvas id="gameCanvas" width="600" height="600"></canvas>
         <div class="controls">
             <p>Use Arrow Keys to Move!</p>
+            <div class="speed-control">
+                <label for="speedRange">Speed: <span id="speedValue">Normal</span></label>
+                <input type="range" id="speedRange" min="100" max="600" step="50" value="400">
+            </div>
             <div id="score">Score: 0</div>
             <button id="restartBtn">Play Again!</button>
         </div>

@@ -2,11 +2,39 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 const restartBtn = document.getElementById('restartBtn');
+const speedRange = document.getElementById('speedRange');
+const speedValue = document.getElementById('speedValue');
 
 // Game Settings
 const gridSize = 30; // Large size for easy visibility
 const tileCount = canvas.width / gridSize;
-let gameSpeed = 400; // Even slower speed for JoJo
+let gameSpeed = parseInt(speedRange.value); // Initial speed from slider
+
+// Speed Control Logic
+speedRange.addEventListener('input', (e) => {
+    gameSpeed = parseInt(e.target.value);
+    
+    // Update text display
+    // Using simple ranges: 100(fast) - 600(slow)
+    // Remember: lower number = faster speed
+    if (gameSpeed > 500) {
+        speedValue.textContent = "Very Slow";
+    } else if (gameSpeed > 400) {
+        speedValue.textContent = "Slow";
+    } else if (gameSpeed > 300) {
+        speedValue.textContent = "Normal";
+    } else if (gameSpeed > 200) {
+        speedValue.textContent = "Fast";
+    } else {
+        speedValue.textContent = "Super Fast!";
+    }
+
+    // If game is running, update speed immediately
+    if (isGameRunning) {
+        clearInterval(gameLoopId);
+        gameLoopId = setInterval(gameLoop, gameSpeed);
+    }
+});
 
 // Snake and Food
 let snake = [];
