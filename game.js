@@ -66,7 +66,7 @@ function initGame() {
         { x: 9, y: 10 },
         { x: 8, y: 10 }
     ];
-    score = 0;
+    score = 10;
     dx = 1; // Start moving right
     dy = 0;
     scoreElement.textContent = 'Score: ' + score;
@@ -192,32 +192,32 @@ function gameOver() {
     ctx.font = '50px Comic Sans MS';
     ctx.textAlign = 'center';
     ctx.fillText('Oops!', canvas.width / 2, canvas.height / 2 - 20);
-    
+
     ctx.font = '30px Comic Sans MS';
     const textPrefix = 'Try Again ';
     const textSuffix = '!';
     const name = 'JoJo';
-    
+
     // Calculate total width to center properly
     const prefixWidth = ctx.measureText(textPrefix).width;
     const nameWidth = ctx.measureText(name).width;
     const suffixWidth = ctx.measureText(textSuffix).width;
     const totalWidth = prefixWidth + nameWidth + suffixWidth;
-    
+
     let currentX = (canvas.width / 2) - (totalWidth / 2);
     const textY = canvas.height / 2 + 30;
-    
+
     // Draw "Try Again "
     ctx.fillStyle = 'white';
     ctx.textAlign = 'left';
     ctx.fillText(textPrefix, currentX, textY);
     currentX += prefixWidth;
-    
+
     // Draw "JoJo" in blue
     ctx.fillStyle = '#1e90ff';
     ctx.fillText(name, currentX, textY);
     currentX += nameWidth;
-    
+
     // Draw "!"
     ctx.fillStyle = 'white';
     ctx.fillText(textSuffix, currentX, textY);
