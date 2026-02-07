@@ -23,6 +23,11 @@ h1 {
     text-shadow: 2px 2px #fff;
 }
 
+.jojo-highlight {
+    color: #1e90ff; /* DodgerBlue */
+    text-shadow: 2px 2px #fff, 0 0 10px rgba(30, 144, 255, 0.5);
+}
+
 canvas {
     background-color: #87ceeb;
     /* Sky blue game board */

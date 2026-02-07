@@ -192,8 +192,35 @@ function gameOver() {
     ctx.font = '50px Comic Sans MS';
     ctx.textAlign = 'center';
     ctx.fillText('Oops!', canvas.width / 2, canvas.height / 2 - 20);
+    
     ctx.font = '30px Comic Sans MS';
-    ctx.fillText('Try Again JoJo!', canvas.width / 2, canvas.height / 2 + 30);
+    const textPrefix = 'Try Again ';
+    const textSuffix = '!';
+    const name = 'JoJo';
+    
+    // Calculate total width to center properly
+    const prefixWidth = ctx.measureText(textPrefix).width;
+    const nameWidth = ctx.measureText(name).width;
+    const suffixWidth = ctx.measureText(textSuffix).width;
+    const totalWidth = prefixWidth + nameWidth + suffixWidth;
+    
+    let currentX = (canvas.width / 2) - (totalWidth / 2);
+    const textY = canvas.height / 2 + 30;
+    
+    // Draw "Try Again "
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'left';
+    ctx.fillText(textPrefix, currentX, textY);
+    currentX += prefixWidth;
+    
+    // Draw "JoJo" in blue
+    ctx.fillStyle = '#1e90ff';
+    ctx.fillText(name, currentX, textY);
+    currentX += nameWidth;
+    
+    // Draw "!"
+    ctx.fillStyle = 'white';
+    ctx.fillText(textSuffix, currentX, textY);
 }
 
 // Controls
@@ -249,7 +276,10 @@ gameOver = function () {
     originalGameOver();
     updateCursor();
     // Update text to be more explicit
-    ctx.fillText('Click to Try Again!', canvas.width / 2, canvas.height / 2 + 70);
+    ctx.fillStyle = 'white';
+    ctx.font = '30px Comic Sans MS';
+    ctx.textAlign = 'center';
+    ctx.fillText('Click to Try Again!', canvas.width / 2, canvas.height / 2 + 75);
 };
 
 const originalInitGame = initGame;
